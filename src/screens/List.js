@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, Image, View, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ItemDetail } from "./itemDetail";
+import { Detail } from "./Detail";
 
-export const ItemList = () => {
+export const List = () => {
     const [data, setData] = useState([]);
     const [itemId, setItemId] = useState(null);
     const [itemTitle, setItemTitle] = useState(null);
@@ -30,6 +30,10 @@ export const ItemList = () => {
     const renderItem = ({ item }) => (
         <TouchableOpacity onPress={() => onOpen(item)}>
             <View style={styles.item}>
+                <Image
+                    style={styles.image}
+                    source={{ uri: item.image }}
+                />
                 <Text>{item.title}</Text>
             </View>
         </TouchableOpacity>
@@ -49,7 +53,7 @@ export const ItemList = () => {
 
     if (itemId) {
         return (
-            <ItemDetail
+            <Detail
                 goBack={() => setItemId(null)}
                 itemId={itemId}
                 itemTitle={itemTitle}
@@ -62,7 +66,6 @@ export const ItemList = () => {
             <List />
         )
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -79,5 +82,10 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 10,
         backgroundColor: '#fff'
-    }
+    },
+    image: {
+        marginRight: 10,
+        width: 50,
+        height: 50,
+    },
 });

@@ -1,7 +1,7 @@
 import { StyleSheet, SafeAreaView, Text } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { DrawerList } from "./src/components/drawerList";
+import { Menu } from "./src/components/Menu";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
@@ -64,7 +64,7 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <DrawerList data={data} />
+            <Menu data={data} />
         </NavigationContainer>
     );
 }
